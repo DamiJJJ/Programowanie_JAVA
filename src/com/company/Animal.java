@@ -1,6 +1,6 @@
 package com.company;
 
-public class Animal {
+public class Animal implements Saleable {
     //konfiguracja
     private static final Double DEFAULT_ANIMAL_WEIGHT = 1.3;
     private static final Double DEFAULT_DOG_WEIGHT = 12.0;
@@ -65,5 +65,15 @@ public class Animal {
     String showAnimal()
     {
         return "Gatunek: " + species + " Imię: " + name + " Waga: " + weight + " kg Wiek: " + age + " lat " + alive;
+    }
+
+    @Override
+    public void sale() {
+
+    }
+
+    @Override
+    public Double getPrice() {
+        return null;
     }
 }

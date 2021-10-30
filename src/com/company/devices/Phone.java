@@ -1,5 +1,7 @@
 package com.company.devices;
 
+import com.company.Saleable;
+
 public class Phone extends Device {
     final Double screenSize;
     public String os;
@@ -9,6 +11,10 @@ public class Phone extends Device {
         this.screenSize = screenSize;
     }
 
+    @Override
+    public void turnOn(){
+        System.out.println("Wciskam przycisk");
+    }
     //toString
     public String showPhone()
     {
