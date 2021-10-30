@@ -34,7 +34,7 @@ public class Main {
 
         Animal cat = new Animal("felis");
         cat.name = "sierściuch";
-        cat.age = 6;
+        cat.age = 5;
 
         cat.feed();
         cat.feed();
