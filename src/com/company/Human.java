@@ -2,10 +2,11 @@ package com.company;
 import com.company.devices.Car;
 import com.company.devices.Phone;
 
-public class Human {
+public class Human extends Animal {
 
     //konfiguracja
     private static final Double DEFAULT_SALARY = 1300.3;
+    private static final String HUMAN_SPECIES = "homo sapiens";
 
     //pola
     String firstName;
@@ -17,15 +18,16 @@ public class Human {
 
     //konstruktory
     Human(String firstName, String lastName) {
+        super(HUMAN_SPECIES);
         this.firstName = firstName;
         this.lastName = lastName;
         this.salary = DEFAULT_SALARY;
     }
 
     //metody
-    public void setSalary(Double newSalary) {
-        if (newSalary >= 0) {
-            salary = newSalary;
+    public void setSalary(Double salary) {
+        if (salary >= 0) {
+            this.salary = salary;
             System.out.println("Nowe dane zostały wysłane do systemu księgowego");
             System.out.println("Należy odebrać aneks do umowy od pani Hani z kadr");
             System.out.println("ZUS i US już wiedzą o zmianie wypłaty, nie ma co ukrywać dochodu :)");
@@ -62,6 +64,7 @@ public class Human {
     {
         System.out.println(this.car);
     }
+
     //toString
     String showHuman()
     {

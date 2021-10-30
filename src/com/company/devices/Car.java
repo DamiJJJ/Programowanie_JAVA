@@ -1,15 +1,10 @@
 package com.company.devices;
 
-public class Car {
-    final String model;
-    final String producer;
-    public final Integer year;
+public class Car extends Device {
     public final Double value;
 
-    public Car(String model, String producer, Integer year, Double value) {
-        this.model = model;
-        this.producer = producer;
-        this.year = year;
+    public Car(String model, String producer, Integer yearOfProduction, Double value) {
+        super(model, producer, yearOfProduction);
         this.value = value;
     }
 
@@ -20,6 +15,6 @@ public class Car {
     //toString
     public String showCar()
     {
-        return "Marka: " + producer + " Model: " + model + " Rok produkcji: " + year;
+        return "Marka: " + producer + " Model: " + model + " Rok produkcji: " + yearOfProduction + " Wartość: " + value;
     }
 }

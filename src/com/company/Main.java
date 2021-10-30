@@ -34,7 +34,7 @@ public class Main {
 
         Animal cat = new Animal("felis");
         cat.name = "sierściuch";
-        cat.age = 6;
+        cat.age = 5;
 
         cat.feed();
         cat.feed();
@@ -62,11 +62,10 @@ public class Main {
 
 //          Zadanie 6
         System.out.println("\n---ZADANIE 6---\n");
-        System.out.println("c1.year == c2.year: " + c2.year.equals(c1.year));
         System.out.println(damian.showHuman());
         System.out.println(c2.showCar());
         System.out.println(cat.showAnimal());
-        Phone p1 = new Phone("Oppo", "Reno 5 Lite", 6.3);
+        Phone p1 = new Phone("Oppo", "Reno 5 Lite", 2020, 6.3);
         p1.os = "Android 11";
         System.out.println(p1.showPhone());
     }
