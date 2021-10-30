@@ -5,7 +5,7 @@ import com.company.devices.Phone;
 public class Main {
 
     public static void main(String[] args) {
-        Integer x = 123;
+
         Animal dog = new Animal("canis");
         dog.name = "Szarik";
         dog.age = 4;
