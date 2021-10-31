@@ -19,14 +19,14 @@ public abstract class Animal implements Saleable, Feedable {
     //konstruktory
     public Animal(String species) {
         this.species = species; //wartość z parametru
-        this.alive = true; //wartość domyślna
+        alive = true; //wartość domyślna
 
         if (this.species.equals("canis")) {
-            this.weight = DEFAULT_DOG_WEIGHT;
+            weight = DEFAULT_DOG_WEIGHT;
         } else if (this.species.equals("felis")) {
-            this.weight = DEFAULT_CAT_WEIGHT;
+            weight = DEFAULT_CAT_WEIGHT;
         } else {
-            this.weight = DEFAULT_ANIMAL_WEIGHT;
+            weight = DEFAULT_ANIMAL_WEIGHT;
         }
     }
 
@@ -42,22 +42,22 @@ public abstract class Animal implements Saleable, Feedable {
     }
 
     public void feed() {
-        this.weight++;
-        checkWeight(this.weight);
+        weight++;
+        checkWeight(weight);
     }
 
     public void feed(Double foodWeight) {
-        this.weight += foodWeight;
-        checkWeight(this.weight);
+        weight += foodWeight;
+        checkWeight(weight);
     }
 
     void takeForAWalk(){
-        this.weight--;
-        checkWeight(this.weight);
+        weight--;
+        checkWeight(weight);
     }
 
     void resetWeightToDefault(){
-        this.weight = DEFAULT_ANIMAL_WEIGHT;
+        weight = DEFAULT_ANIMAL_WEIGHT;
     }
 
     //toString
