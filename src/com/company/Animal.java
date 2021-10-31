@@ -12,6 +12,7 @@ public class Animal implements Saleable {
     private Double weight;
     Integer age;
     Boolean alive;
+    Double value;
 
     //konstruktory
     Animal(String species) {
@@ -67,13 +68,26 @@ public class Animal implements Saleable {
         return "Gatunek: " + species + " Imię: " + name + " Waga: " + weight + " kg Wiek: " + age + " lat " + alive;
     }
 
+    //zadanie 8
     @Override
-    public void sale() {
-
+    public void sell(Human seller, Human buyer, Double price) {
+        System.out.println("Próba sprzedania zwierzęcia " + showAnimal());
+        if(seller.pet != this){ //this - obiekt tej klasy
+            System.out.println("Sprzedawca nie posiada zwierzęcia");
+        }
+        else if(buyer.cash < price){
+            System.out.println("Kupujący ma za mało kasy");
+        }
+        else if(this instanceof Human){ //czy obiekt klasy Animal jest obiektem klasy Human
+            System.out.println("NIE MA TAKIEGO SPRZEDAWANIA LUDZI!");
+        }
+        else{
+            seller.cash += price;
+            buyer.cash -= price;
+            seller.pet = null;
+            buyer.pet = this;
+            System.out.println("Zwierzaczek " + showAnimal() + " został sprzedany za " + price);
+        }
     }
 
-    @Override
-    public Double getPrice() {
-        return null;
-    }
 }

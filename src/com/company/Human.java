@@ -11,10 +11,11 @@ public class Human extends Animal {
     //pola
     String firstName;
     String lastName;
-    Phone mobile;
-    Animal pet;
-    private String car;
+    public Phone mobile;
+    public Animal pet;
+    public Car car;
     private Double salary;
+    public Double cash;
 
     //konstruktory
     Human(String firstName, String lastName) {
@@ -22,6 +23,7 @@ public class Human extends Animal {
         this.firstName = firstName;
         this.lastName = lastName;
         this.salary = DEFAULT_SALARY;
+        this.cash = 0.0;
     }
 
     //metody
@@ -37,17 +39,17 @@ public class Human extends Animal {
             System.out.println("Próbujesz przypisać ujemną wypłatę!");
         }
     }
-    public void setCar(Car vehicle)
+    public void setCar(Car car)
     {
-        if(salary > vehicle.value)
+        if(salary > car.value)
         {
             System.out.println("Udało się kupić samochód za gotówkę!");
-            car = vehicle.showCar();
+            this.car = car;
         }
-        else if(salary > (vehicle.value/12))
+        else if(salary > (car.value/12))
         {
             System.out.println("Udało się kupić samochód na kredyt!");
-            car = vehicle.showCar();
+            this.car = car;
         }
         else
         {
@@ -70,4 +72,10 @@ public class Human extends Animal {
     {
         return "Imię: " + firstName + " Nazwisko: " + lastName + " Nr telefonu: " + mobile + " Zwierzę: " + pet + " Samochód:( " + car + ") Pensja: " + salary;
     }
+
+//    OVERRIDE - metoda ważniejsza od metody rodzica
+//    public void sell(Human seller, Human buyer, Double price)
+//    {
+//        System.out.println("CHYBA CIE POTEGOWALO");
+//    }
 }

@@ -1,13 +1,14 @@
 package com.company.devices;
 
+import com.company.Human;
 import com.company.Saleable;
 
 public class Car extends Device implements Saleable {
-    public final Double value;
+    public final Double engineCapacity;
 
-    public Car(String model, String producer, Integer yearOfProduction, Double value) {
-        super(model, producer, yearOfProduction);
-        this.value = value;
+    public Car(String model, String producer, Integer yearOfProduction, Double engineCapacity, Double value) {
+        super(model, producer, yearOfProduction, value);
+        this.engineCapacity = engineCapacity;
     }
 
     @Override
@@ -18,16 +19,24 @@ public class Car extends Device implements Saleable {
     //toString
     public String showCar()
     {
-        return "Marka: " + producer + " Model: " + model + " Rok produkcji: " + yearOfProduction + " Wartość: " + value;
+        return showDevice() + " Pojemność silnika: " + engineCapacity;
     }
 
+    //zadanie 8
     @Override
-    public void sale() {
-
+    public void sell(Human seller, Human buyer, Double price) {
+        System.out.println("Próba sprzedania samochodu " + showCar());
+        if(seller.car != this){
+            System.out.println("Sprzedawca nie posiada samochodu");
+        } else if(buyer.cash < price){
+            System.out.println("Kupujący ma za mało kasy");
+        }else{
+            seller.cash += price;
+            buyer.cash -= price;
+            seller.car = null;
+            buyer.car = this;
+            System.out.println("Samochód " + showCar() + " został sprzedany za " + price);
+        }
     }
 
-    @Override
-    public Double getPrice() {
-        return null;
-    }
 }
