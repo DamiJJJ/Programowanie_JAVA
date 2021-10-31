@@ -1,6 +1,9 @@
 package com.company;
+import com.company.creatures.FarmAnimal;
+import com.company.creatures.Human;
 import com.company.devices.Car;
 import com.company.devices.Phone;
+import com.company.creatures.Pet;
 
 public class Main {
 
@@ -9,7 +12,7 @@ public class Main {
 
         Phone p1 = new Phone("Oppo", "Reno 5 Lite", 2020, 1500.0, 6.3);
         Car bmw = new Car("M3", "BMW", 2004, 2.5, 10000.0);
-        Animal dog = new Animal("canis");
+        Pet dog = new Pet("canis");
         dog.name = "Szarik";
         p1.os = "Android 11";
         Human damian = new Human("Damian", "Mrozek");
@@ -40,6 +43,11 @@ public class Main {
         }
 
         damian.pet.sell(damian, sister, 20.0);
+
+        FarmAnimal pig = new FarmAnimal("swinia");
+        pig.beEaten();
+        pig.feed(5.0);
+        pig.beEaten();
 
     }
 }

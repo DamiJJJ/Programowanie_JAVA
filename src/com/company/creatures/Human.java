@@ -1,4 +1,4 @@
-package com.company;
+package com.company.creatures;
 import com.company.devices.Car;
 import com.company.devices.Phone;
 
@@ -18,7 +18,7 @@ public class Human extends Animal {
     public Double cash;
 
     //konstruktory
-    Human(String firstName, String lastName) {
+    public Human(String firstName, String lastName) {
         super(HUMAN_SPECIES);
         this.firstName = firstName;
         this.lastName = lastName;
