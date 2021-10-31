@@ -1,6 +1,8 @@
-package com.company;
+package com.company.creatures;
 
-public class Animal implements Saleable {
+import com.company.Saleable;
+
+public abstract class Animal implements Saleable, Feedable {
     //konfiguracja
     private static final Double DEFAULT_ANIMAL_WEIGHT = 1.3;
     private static final Double DEFAULT_DOG_WEIGHT = 12.0;
@@ -8,14 +10,14 @@ public class Animal implements Saleable {
 
     //pola / przechowywanie danych
     final String species;
-    String name;
-    private Double weight;
+    public String name;
+    static Double weight;
     Integer age;
-    Boolean alive;
+    static Boolean alive;
     Double value;
 
     //konstruktory
-    Animal(String species) {
+    public Animal(String species) {
         this.species = species; //wartość z parametru
         this.alive = true; //wartość domyślna
 
@@ -35,27 +37,23 @@ public class Animal implements Saleable {
             System.out.println("Zwierzątko nie żyje :(");
         }
             else{
-                System.out.println("moja waga to: " + this.weight);
+            System.out.println("waga zwierzęcia " + this.species + " wynosi: " + this.weight);
             }
     }
 
-    void feed() {
+    public void feed() {
         this.weight++;
         checkWeight(this.weight);
     }
 
-    void feed(Double foodWeight) {
+    public void feed(Double foodWeight) {
         this.weight += foodWeight;
-        System.out.println("moja waga to: " + this.weight);
+        checkWeight(this.weight);
     }
 
     void takeForAWalk(){
         this.weight--;
         checkWeight(this.weight);
-    }
-
-    Double getWeight() {
-        return this.weight;
     }
 
     void resetWeightToDefault(){
