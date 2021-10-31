@@ -29,7 +29,15 @@ public class Main {
         System.out.println("damian.car: " + damian.car);
         System.out.println("jan.car: " + jan.car);
 
-        damian.mobile.sell(damian, jan, 2100.0);
+        try {
+            damian.mobile.sell(damian, jan, 2100.0);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            //powiadomić użytkownika
+            //wysłać mail do admina itp.
+        }
 
         damian.pet.sell(damian, sister, 20.0);
 
