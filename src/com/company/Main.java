@@ -5,9 +5,12 @@ import com.company.devices.Car;
 import com.company.devices.Phone;
 import com.company.creatures.Pet;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MalformedURLException {
 
 
         Phone p1 = new Phone("Oppo", "Reno 5 Lite", 2020, 1500.0, 6.3);
@@ -49,5 +52,10 @@ public class Main {
         pig.feed(5.0);
         pig.beEaten();
 
+        p1.installAnApp("Instagram", "Facebook", "YouTube");
+        p1.installAnApp("Instagram", 18.9, "http://www.ciezkieto.com/apka3");
+
+        URL url = new URL("http", "pobierzapke.com", "/2.1");
+        p1.installAnApp(url);
     }
 }
