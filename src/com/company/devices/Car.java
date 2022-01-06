@@ -3,12 +3,15 @@ package com.company.devices;
 import com.company.creatures.Human;
 import com.company.Saleable;
 
-public class Car extends Device implements Saleable {
-    public final Double engineCapacity;
+public abstract class Car extends Device implements Saleable {
+    public final Integer horsePower;
+    public final Integer tankCapacity;
+    public Double fuelInTank = 0.0;
 
-    public Car(String model, String producer, Integer yearOfProduction, Double engineCapacity, Double value) {
+    public Car(String model, String producer, Integer yearOfProduction, Integer horsePower, Integer tankCapacity, Double value) {
         super(model, producer, yearOfProduction, value);
-        this.engineCapacity = engineCapacity;
+        this.horsePower = horsePower;
+        this.tankCapacity = tankCapacity;
     }
 
     @Override
@@ -19,7 +22,7 @@ public class Car extends Device implements Saleable {
     //toString
     public String showCar()
     {
-        return showDevice() + " Pojemność silnika: " + engineCapacity;
+        return showDevice() + " Moc: " + horsePower + " kM";
     }
 
     //zadanie 8
@@ -38,5 +41,8 @@ public class Car extends Device implements Saleable {
             System.out.println("Samochód " + showCar() + " został sprzedany za " + price);
         }
     }
+
+    //Zadanie 10.5
+    public abstract void refuel(Double quantity);
 
 }
