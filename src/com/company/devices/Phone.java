@@ -11,7 +11,7 @@ public class Phone extends Device implements Saleable  {
     public String os;
     public static final String DEFAULT_PROTOCOL = "https";
     public static final String DEFAULT_HOST = "pobierzapki.com";
-    public static final String DEFAULT_FILE = "1.0";
+    public static final String DEFAULT_FILE = "/1.0";
 
 
     public Phone(String producer, String model, Integer yearOfProduction, Double value, Double screenSize) {
