@@ -61,7 +61,7 @@ public abstract class Animal implements Saleable, Feedable {
     }
 
     //toString
-    String showAnimal()
+    public String toString()
     {
         return "Gatunek: " + species + " Imię: " + name + " Waga: " + weight + " kg Wiek: " + age + " lat " + alive;
     }
@@ -69,7 +69,7 @@ public abstract class Animal implements Saleable, Feedable {
     //zadanie 8
     @Override
     public void sell(Human seller, Human buyer, Double price) {
-        System.out.println("Próba sprzedania zwierzęcia " + showAnimal());
+        System.out.println("Próba sprzedania zwierzęcia " + this);
         if(seller.pet != this){ //this - obiekt tej klasy
             System.out.println("Sprzedawca nie posiada zwierzęcia");
         }
@@ -84,7 +84,7 @@ public abstract class Animal implements Saleable, Feedable {
             buyer.cash -= price;
             seller.pet = null;
             buyer.pet = this;
-            System.out.println("Zwierzaczek " + showAnimal() + " został sprzedany za " + price);
+            System.out.println("Zwierzaczek " + this + " został sprzedany za " + price);
         }
     }
 

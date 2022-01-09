@@ -2,20 +2,21 @@ package com.company.creatures;
 import com.company.devices.Car;
 import com.company.devices.Phone;
 
-public class Human extends Animal {
+public class Human extends Animal implements Comparable<Human> {
 
     //konfiguracja
     private static final Double DEFAULT_SALARY = 1300.3;
     private static final String HUMAN_SPECIES = "homo sapiens";
+    private static final int DEFAULT_GARAGE_SIZE = 4;
 
     //pola
-    String firstName;
+    public String firstName;
     String lastName;
     public Phone mobile;
     public Animal pet;
-    public Car car;
     private Double salary;
     public Double cash;
+    public Car[] garage;
 
     //konstruktory
     public Human(String firstName, String lastName) {
@@ -24,8 +25,17 @@ public class Human extends Animal {
         this.lastName = lastName;
         this.salary = DEFAULT_SALARY;
         this.cash = 0.0;
+        this.garage = new Car[DEFAULT_GARAGE_SIZE];
     }
 
+    public Human(String firstName, String lastName, int garageSize) {
+        super(HUMAN_SPECIES);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.salary = 0.0;
+        this.cash = 0.0;
+        this.garage = new Car[garageSize];
+    }
     //metody
     public void setSalary(Double salary) {
         if (salary >= 0) {
@@ -39,17 +49,22 @@ public class Human extends Animal {
             System.out.println("Próbujesz przypisać ujemną wypłatę!");
         }
     }
-    public void setCar(Car car)
+    public void getCar(int parkingNo)
     {
-        if(salary > car.value)
+        System.out.println(this.garage[parkingNo]);
+    }
+
+    public void setCar(int parkingNo)
+    {
+        if(salary > garage[parkingNo].value)
         {
             System.out.println("Udało się kupić samochód za gotówkę!");
-            this.car = car;
+            this.garage[parkingNo] = garage[parkingNo];
         }
-        else if(salary > (car.value/12))
+        else if(salary > (garage[parkingNo].value/12))
         {
             System.out.println("Udało się kupić samochód na kredyt!");
-            this.car = car;
+            this.garage[parkingNo] = garage[parkingNo];
         }
         else
         {
@@ -57,25 +72,72 @@ public class Human extends Animal {
         }
     }
 
+    public void getCarsValue()
+    {
+        Double value = 0.0;
+        for(int i = 0; i < garage.length-1; i++)
+        {
+            value += garage[i].value;
+            if(garage[i] == null)
+            {
+                break;
+            }
+        }
+        System.out.println(value);
+    }
+
     public Double getSalary(){
 
         System.out.println("Ostatnie pobieranie danych o wypłacie: 26.06.2021. Wartość: 3234zł");
         return this.salary;
     }
-    public void getCar()
-    {
-        System.out.println(this.car);
-    }
 
     //toString
-    String showHuman()
+    public String toString()
     {
-        return "Imię: " + firstName + " Nazwisko: " + lastName + " Nr telefonu: " + mobile + " Zwierzę: " + pet + " Samochód:( " + car + ") Pensja: " + salary;
+        return "Imię: " + firstName + " Nazwisko: " + lastName + " Nr telefonu: " + mobile + " Zwierzę: " + pet + " Samochód:( " + garage[1] + ") Pensja: " + salary;
     }
 
-//    OVERRIDE - metoda ważniejsza od metody rodzica
-//    public void sell(Human seller, Human buyer, Double price)
-//    {
-//        System.out.println("CHYBA CIE POTEGOWALO");
-//    }
+    public boolean hasCar(Car newCar) {
+        for(Car car : garage){
+            if(car != null && car.equals(newCar)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean hasFreeParkingLot() {
+        for(int i = 0; i < this.garage.length; i++)
+        {
+            if(garage[i] == null){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void addCar(Car newCar) {
+        for(int i = 0; i < this.garage.length; i++)
+        {
+            if(garage[i] == null){
+                garage[i] = newCar;
+                break;
+            }
+        }
+    }
+
+    public void removeCar(Car newCar) {
+        for(int i = 0; i < this.garage.length; i++) {
+            if (garage[i] == newCar) {
+                garage[i] = null;
+                break;
+            }
+        }
+    }
+
+    @Override
+    public int compareTo(Human otherHuman){
+        return this.cash.compareTo(otherHuman.cash);
+    }
 }
