@@ -14,7 +14,7 @@ public abstract class Device {
         this.yearOfProduction = yearOfProduction;
         this.value = value;
     }
-    public String showDevice()
+    public String toString()
     {
         return "Producent: " + producer + " Model: " + model + " rok produkcji: " + yearOfProduction + " wartoś: " + value;
     }

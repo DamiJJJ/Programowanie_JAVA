@@ -27,7 +27,7 @@ public class Phone extends Device implements Saleable  {
     //toString
     public String showPhone()
     {
-        return showDevice() + " przekątna ekranu: " + screenSize + " cali System Operacyjny: " + os;
+        return toString() + " przekątna ekranu: " + screenSize + " cali System Operacyjny: " + os;
     }
 
     public void installAnApp(String AppName)

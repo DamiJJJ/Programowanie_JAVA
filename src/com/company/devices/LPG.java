@@ -1,11 +1,13 @@
 package com.company.devices;
 
+import com.company.creatures.Human;
+
 public class LPG extends Car{
 
 
     //konstruktor
-    public LPG(String model, String producer, Integer yearOfProduction, Integer horsePower, Integer tankCapacity, Double value) {
-        super(model, producer, yearOfProduction, horsePower, tankCapacity, value);
+    public LPG(String model, String producer, Integer yearOfProduction, Integer horsePower, Integer tankCapacity, Double value, Human firstOwner) {
+        super(model, producer, yearOfProduction, horsePower, tankCapacity, value, firstOwner);
 
     }
 
