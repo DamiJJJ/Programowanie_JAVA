@@ -61,45 +61,15 @@ public class Main {
         System.out.println("Auta Jana:\n");
         jan.sortCarsByYear();
 
-
-        //SORTOWANIE
-        System.out.println("\nSortowanie ludzi (z zajęć):\n============");
-
-        Human brother = new Human("Jakub", "Jakubski");
-        brother.cash = 300.0;
-        sister.cash = 123423.0;
-        damian.cash = 1.0;
-        jan.cash = 0.0;
-
-        List<Human> family = new ArrayList<>();
-        family.add(damian);
-        family.add(jan);
-        family.add(sister);
-        family.add(brother);
-
-        Collections.sort(family);
-
-        System.out.println("from list: ");
-        for(Human human : family){
-            System.out.println(human.firstName + " " + human.cash);
+        try {
+            bmw.sell(damian, sister, 20.0);
         }
-
-        Human[] familyArray = new Human[4];
-        familyArray[0] = brother;
-        familyArray[1] = damian;
-        familyArray[3] = jan;
-
-        Arrays.sort(familyArray, new HumanCashComparator());
-
-        System.out.println("from array: ");
-        for(Human human : familyArray){
-            if(human == null){
-                System.out.println("null");
-            } else {
-                System.out.println(human.firstName + " " + human.cash);
-            }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
         }
-
+        System.out.println(bmw.doesASoldtoB(jan, damian));
+        System.out.println(bmw.NumberOfTransactions());
     }
 
 }
