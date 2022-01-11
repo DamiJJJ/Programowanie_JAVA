@@ -10,22 +10,33 @@ public class Diesel extends Car{
         super(model, producer, yearOfProduction, horsePower, tankCapacity, value, firstOwner);
     }
 
-    public void refuel(Double quantity){
+    public void refuel(Double quantity, String fuelType){
 
-        if(quantity <= 0)
+        if(fuelType != "Diesel")
         {
-            System.out.println("Próbujesz wylać paliwo z baku?");
-        }
-        else if(quantity > tankCapacity || quantity > (tankCapacity-fuelInTank))
-        {
-            System.out.println("Za dużo chcesz nalać :)");
+            System.out.println("Nie ten typ paliwa koleżko! Musisz wybrać Diesla");
         }
         else
         {
-            double fuel = fuelInTank + quantity;
-            System.out.println("Nalałeś " + quantity + " l\n");
-            System.out.println("W baku masz teraz " + fuel + " l");
+            if(quantity < 0)
+            {
+                System.out.println("Próbujesz wylać paliwo z baku?");
+            }
+            else if(quantity > tankCapacity || quantity > (tankCapacity-fuelInTank))
+            {
+                System.out.println("Za dużo chcesz nalać :)");
+            }
+            else
+            {
+                double fuel = fuelInTank + quantity;
+                System.out.println("Nalałeś " + quantity + " l diesla\n");
+                System.out.println("W baku masz teraz " + fuel + " l diesla");
+            }
         }
+    }
 
+    @Override
+    public int compareTo(Car otherCar) {
+        return this.yearOfProduction.compareTo(otherCar.yearOfProduction);
     }
 }
