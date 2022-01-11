@@ -17,6 +17,7 @@ public abstract class Car extends Device implements Saleable, Comparable<Car> {
     public final Integer tankCapacity;
     public Double fuelInTank;
     List<Human> owners;
+    private Integer numberOfTransactions = 0;
 
     //konstruktory
     public Car(String model, String producer, Integer yearOfProduction, Integer horsePower, Double value) {
@@ -38,7 +39,7 @@ public abstract class Car extends Device implements Saleable, Comparable<Car> {
         this.horsePower = horsePower;
         this.tankCapacity = tankCapacity;
         this.fuelInTank = DEFAULT_FUEL_IN_TANK;
-        this.owners = new LinkedList<Human>();
+        this.owners = new LinkedList<>();
         this.owners.add(firstOwner);
     }
 
@@ -74,11 +75,15 @@ public abstract class Car extends Device implements Saleable, Comparable<Car> {
             seller.removeCar(this);
             buyer.addCar(this);
             owners.add(buyer);
+            numberOfTransactions += 1;
             System.out.println("Samochód " + this + " został sprzedany za " + price);
         }
     }
 
-    //Zadanie 10.5
+    public Integer NumberOfTransactions(){
+        return this.numberOfTransactions;
+    }
+
     public abstract void refuel(Double quantity, String fuelType);
 
     public boolean isLastOwner(Human human){
