@@ -1,6 +1,9 @@
 package com.company.creatures;
 import com.company.devices.Car;
+import com.company.devices.CarYearComparator;
 import com.company.devices.Phone;
+
+import java.util.Arrays;
 
 public class Human extends Animal implements Comparable<Human> {
 
@@ -54,17 +57,17 @@ public class Human extends Animal implements Comparable<Human> {
         System.out.println(this.garage[parkingNo]);
     }
 
-    public void setCar(int parkingNo)
+    public void setCar(Car car, int parkingNo)
     {
-        if(salary > garage[parkingNo].value)
+        if(salary > car.value)
         {
             System.out.println("Udało się kupić samochód za gotówkę!");
-            this.garage[parkingNo] = garage[parkingNo];
+            this.garage[parkingNo] = car;
         }
-        else if(salary > (garage[parkingNo].value/12))
+        else if(salary > (car.value/12))
         {
             System.out.println("Udało się kupić samochód na kredyt!");
-            this.garage[parkingNo] = garage[parkingNo];
+            this.garage[parkingNo] = car;
         }
         else
         {
@@ -75,15 +78,25 @@ public class Human extends Animal implements Comparable<Human> {
     public void getCarsValue()
     {
         Double value = 0.0;
-        for(int i = 0; i < garage.length-1; i++)
-        {
-            value += garage[i].value;
-            if(garage[i] == null)
+        for (Car car : garage) {
+            if(car != null)
+            {
+                value += car.value;
+            }
+            else
             {
                 break;
             }
         }
         System.out.println(value);
+    }
+    public void sortCarsByYear()
+    {
+        Arrays.sort(this.garage, new CarYearComparator());
+        for(Car car : garage)
+        {
+            System.out.println(car);
+        }
     }
 
     public Double getSalary(){

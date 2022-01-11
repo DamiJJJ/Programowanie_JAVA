@@ -10,21 +10,33 @@ public class Electric extends Car {
         super(model, producer, yearOfProduction, horsePower, tankCapacity, value, firstOwner);
     }
 
-    public void refuel(Double quantity) {
+    public void refuel(Double quantity, String fuelType) {
 
-        if(quantity <= 0)
+        if(fuelType != "Electric")
         {
-            System.out.println("Próbujesz rozładować akumulatory?");
-        }
-        else if(quantity > tankCapacity || quantity > (tankCapacity-fuelInTank))
-        {
-            System.out.println("Za dużo chcesz naładować :)");
+            System.out.println("Masz samochód elektryczny, nie tankuj tylko podładuj");
         }
         else
         {
-            double fuel = fuelInTank + quantity;
-            System.out.println("Naładowałeś " + quantity + " kWh\n");
-            System.out.println("Akumulator jest naładowany na " + fuel + " kWh");
+            if(quantity < 0)
+            {
+                System.out.println("Próbujesz rozładować akumulatory?");
+            }
+            else if(quantity > tankCapacity || quantity > (tankCapacity-fuelInTank))
+            {
+                System.out.println("Za dużo chcesz naładować :)");
+            }
+            else
+            {
+                double fuel = fuelInTank + quantity;
+                System.out.println("Naładowałeś " + quantity + " kWh\n");
+                System.out.println("Akumulator jest naładowany na " + fuel + " kWh");
+            }
         }
+    }
+
+    @Override
+    public int compareTo(Car otherCar) {
+        return this.yearOfProduction.compareTo(otherCar.yearOfProduction);
     }
 }

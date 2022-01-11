@@ -19,77 +19,51 @@ public class Main {
 
         //KOD TESTOWY
 
-        Phone p1 = new Phone("Oppo", "Reno 5 Lite", 2020, 1500.0, 6.3);
-        Pet dog = new Pet("canis");
-        dog.name = "Szarik";
-        p1.os = "Android 11";
         Human damian = new Human("Damian", "Mrozek");
         Human jan = new Human("Jan", "Dzban");
         Human sister = new Human("Kornelia", "Korwin");
-        Diesel bmw = new Diesel("M3", "BMW", 2004, 350, 35, 10000.0, damian);
         sister.cash = 20.0;
         damian.cash = 5000.0;
-        damian.mobile = p1;
         jan.cash = 2000.0;
-        damian.addCar(bmw);
-        damian.pet = jan;
+
+
+        Diesel bmw = new Diesel("M3", "BMW", 2005, 350, 35, 10000.0, jan);
+        Electric tesla = new Electric("S", "Tesla", 2014, 367, 85, 200000.0, damian);
+        LPG kalos = new LPG("Kalos", "Chevrolet", 2004, 75, 30, 2500.00, damian);
+
+        System.out.println("\nSuma wartości pojazdów jana: ");
+
+        jan.addCar(bmw);
+        jan.addCar(tesla);
+        jan.addCar(kalos);
+        jan.getCarsValue();
+
+        System.out.println("\nPojazdy jana posortowane wg. roku produkcji: ");
+        jan.sortCarsByYear();
+
+        damian.addCar(tesla);
+        damian.addCar(kalos);
 
         System.out.println("\nSprzedaż auta:\n============");
-        System.out.println("damian.car: " + damian.garage[0]);
-        System.out.println("jan.car: " + jan.garage[0]);
-        bmw.sell(damian, jan, 2000.0);
-        System.out.println("damian.car: " + damian.garage[0]);
-        System.out.println("jan.car: " + jan.garage[0]);
-
-
-        System.out.println("\nZadanko 10:\n============");
-        bmw.fuelInTank = 3.0;
-        bmw.refuel(20.0);
-
-        Electric tesla = new Electric("S", "Tesla", 2014, 367, 85, 200000.0, damian);
-        tesla.fuelInTank = 40.0;
-        tesla.refuel(50.0);
-
-        LPG kalos = new LPG("Kalos", "Chevrolet", 2004, 75, 30, 2500.00, damian);
-        kalos.refuel(5.0);
-
-        System.out.println("\nSprzedaż telefonu:\n============");
+        System.out.println("Auta Damiana:\n");
+        damian.sortCarsByYear();
+        System.out.println("Auta Jana:\n");
+        jan.sortCarsByYear();
         try {
-            damian.mobile.sell(damian, jan, 2100.0);
+            bmw.sell(jan, damian, 2000.0);
         }
         catch (Exception e)
         {
             System.out.println(e.getMessage());
-            //powiadomić użytkownika
-            //wysłać mail do admina itp.
         }
-
-        System.out.println("\nSprzedaż ludzi:\n============");
-        damian.pet.sell(damian, sister, 20.0);
-
-        System.out.println("\nJedzenie i karmienie:\n============");
-        FarmAnimal pig = new FarmAnimal("swinia");
-        pig.beEaten();
-        pig.feed(5.0);
-        pig.beEaten();
-
-        System.out.println("\nInstalowanie appek:\n============");
-        p1.installAnApp("Instagram", "Facebook", "YouTube");
-        p1.installAnApp("Instagram", 18.9, "http://www.ciezkieto.com/apka3");
-
-        URL url = new URL("http", "pobierzapke.com", "/2.1");
-        p1.installAnApp(url);
-
-        System.out.println("\nTablice:\n============");
-
-        jan.garage[0] = bmw;
-        jan.garage[1] = tesla;
-        jan.garage[2] = tesla;
-        jan.getCarsValue();
+        System.out.println("Auta Damiana:\n");
+        damian.sortCarsByYear();
+        System.out.println("Auta Jana:\n");
+        jan.sortCarsByYear();
 
 
         //SORTOWANIE
-        System.out.println("\nSortowanie:\n============");
+        System.out.println("\nSortowanie ludzi (z zajęć):\n============");
 
         Human brother = new Human("Jakub", "Jakubski");
         brother.cash = 300.0;
