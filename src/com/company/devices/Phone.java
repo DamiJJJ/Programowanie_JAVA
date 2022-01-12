@@ -4,19 +4,31 @@ import com.company.creatures.Human;
 import com.company.Saleable;
 
 import java.net.URL;
+import java.util.*;
 
 
 public class Phone extends Device implements Saleable  {
-    final Double screenSize;
-    public String os;
+
+    public static final String DEFAULT_OS = "Android";
     public static final String DEFAULT_PROTOCOL = "https";
     public static final String DEFAULT_HOST = "pobierzapki.com";
     public static final String DEFAULT_FILE = "/1.0";
 
+    final Double screenSize;
+    Human owner;
+    public String os;
+    Set<Application> installedApps = new HashSet<>();
 
     public Phone(String producer, String model, Integer yearOfProduction, Double value, Double screenSize) {
         super(model, producer, yearOfProduction, value);
         this.screenSize = screenSize;
+        this.os = DEFAULT_OS;
+    }
+    public Phone(String producer, String model, Integer yearOfProduction, Double value, Double screenSize, Human owner) {
+        super(model, producer, yearOfProduction, value);
+        this.screenSize = screenSize;
+        this.owner = owner;
+        this.os = DEFAULT_OS;
     }
 
     @Override
@@ -25,11 +37,12 @@ public class Phone extends Device implements Saleable  {
     }
 
     //toString
-    public String showPhone()
+    public String toString()
     {
-        return toString() + " przekątna ekranu: " + screenSize + " cali System Operacyjny: " + os;
+        return producer + " " + model + " rok produkcji: " + yearOfProduction + " wartość: " + value + " przekątna ekranu: " + screenSize + " cali System Operacyjny: " + os;
     }
 
+    //---------- Zadanie 10 ----------//
     public void installAnApp(String AppName)
     {
         System.out.println("Aplikacja " + AppName + " została zainstalowana");
@@ -54,11 +67,77 @@ public class Phone extends Device implements Saleable  {
         System.out.println("Aplikacja z linku " + url + " została zainstalowana");
     }
 
+    //---------- Zadanie 13 ----------//
+    public void installAnApp(Application app)
+    {
+        if(this.owner.cash <= app.price)
+        {
+            System.out.println("Właściciel telefonu nie ma dość pieniędzy na zainstalowanie tej aplikacji");
+        }
+        else
+        {
+            this.owner.cash -= app.price;
+            this.installedApps.add(app);
+            System.out.println("Aplikacja " + app + " została zainstalowana na telefonie: " + this);
+        }
+    }
+
+    public boolean isAppInstalled(Application app)
+    {
+        return this.installedApps.contains(app);
+    }
+
+    public boolean isAppInstalled(String appName)
+    {
+        for(Application apps : installedApps){
+            return apps.name.contains(appName);
+        }
+        return false;
+    }
+
+    public void listFreeApps()
+    {
+        for(Application apps : installedApps){
+            if(apps.price == 0.0){
+                System.out.println(apps.name);
+            }
+        }
+    }
+
+    public void valueOfInstalledApps()
+    {
+        double value = 0;
+        for(Application apps : installedApps){
+                value += apps.price;
+        }
+        System.out.println("Wartość wszystkich zainstalowanych aplikacji: " + value);
+    }
+
+    public void installedAppsNames()
+    {
+        Set sortedApps = new TreeSet(new ApplicationNameComparator());
+        sortedApps.addAll(installedApps);
+        for(Object applications : sortedApps)
+        {
+            System.out.println(applications);
+        }
+    }
+
+    public void appsSortedByPrice()
+    {
+        Set sortedApps = new TreeSet(new ApplicationPriceComparator());
+        sortedApps.addAll(installedApps);
+        for(Object applications : sortedApps)
+        {
+            System.out.println(applications);
+        }
+    }
+
 
     //zadanie 8
     @Override
     public void sell(Human seller, Human buyer, Double price) throws Exception {
-        System.out.println("Próba sprzedania telefonu " + showPhone());
+        System.out.println("Próba sprzedania telefonu " + this);
         if(seller.mobile != this){
             throw new Exception("Sprzedawca nie posiada telefonu");
         } else if(buyer.cash < price){
@@ -68,7 +147,9 @@ public class Phone extends Device implements Saleable  {
             buyer.cash -= price;
             seller.mobile = null;
             buyer.mobile = this;
-            System.out.println("Telefon " + showPhone() + " został sprzedany za " + price);
+            this.owner = buyer;
+            System.out.println("Telefon " + this + " został sprzedany za " + price);
         }
     }
 }
+

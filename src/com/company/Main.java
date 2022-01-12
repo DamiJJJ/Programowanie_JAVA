@@ -6,11 +6,7 @@ import com.company.devices.*;
 import com.company.creatures.Pet;
 
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+
 
 public class Main {
 
@@ -19,57 +15,35 @@ public class Main {
 
         //KOD TESTOWY
 
-        Human damian = new Human("Damian", "Mrozek");
         Human jan = new Human("Jan", "Dzban");
-        Human sister = new Human("Kornelia", "Korwin");
-        sister.cash = 20.0;
-        damian.cash = 5000.0;
         jan.cash = 2000.0;
 
+        System.out.println("\nZadanie 13: ");
 
-        Diesel bmw = new Diesel("M3", "BMW", 2005, 350, 35, 10000.0, jan);
-        Electric tesla = new Electric("S", "Tesla", 2014, 367, 85, 200000.0, damian);
-        LPG kalos = new LPG("Kalos", "Chevrolet", 2004, 75, 30, 2500.00, damian);
+        Application spotify = new Application("Spotify", 5.8, 29.99);
+        Application instagram = new Application("Instagram", 3.4, 19.99);
+        Application facebook = new Application("Facebook", 1.4, 0.0);
+        Application youtube = new Application("YouTube", 5.4, 0.0);
+        Application memehub = new Application("MemeHub", 1.7, 0.0);
+        Phone p1 = new Phone("Oppo", "Reno 5 Lite", 2020, 1500.0, 6.3, jan);
 
-        System.out.println("\nSuma wartości pojazdów jana: ");
+        System.out.println("\nInstalowanie aplikacji: ");
+        p1.installAnApp(instagram);
+        p1.installAnApp(youtube);
+        p1.installAnApp(memehub);
+        p1.installAnApp(spotify);
+        p1.installAnApp(facebook);
 
-        jan.addCar(bmw);
-        jan.addCar(tesla);
-        jan.addCar(kalos);
-        jan.getCarsValue();
-
-        System.out.println("\nPojazdy jana posortowane wg. roku produkcji: ");
-        jan.sortCarsByYear();
-
-        damian.addCar(tesla);
-        damian.addCar(kalos);
-
-        System.out.println("\nSprzedaż auta:\n============");
-        System.out.println("Auta Damiana:\n");
-        damian.sortCarsByYear();
-        System.out.println("Auta Jana:\n");
-        jan.sortCarsByYear();
-        try {
-            bmw.sell(jan, damian, 2000.0);
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-        }
-        System.out.println("Auta Damiana:\n");
-        damian.sortCarsByYear();
-        System.out.println("Auta Jana:\n");
-        jan.sortCarsByYear();
-
-        try {
-            bmw.sell(damian, sister, 20.0);
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-        }
-        System.out.println(bmw.doesASoldtoB(jan, damian));
-        System.out.println(bmw.NumberOfTransactions());
+        System.out.println("\nCzy aplikacja " + instagram + " jest zainstalowana?");
+        System.out.println(p1.isAppInstalled(instagram));
+        System.out.println("\nCzy aplikacja Facebook jest zainstalowana");
+        System.out.println(p1.isAppInstalled("Facebook"));
+        System.out.println("\nWypisanie wszystkich zainstalowanych bezpłatnych aplikacji:\n");
+        p1.listFreeApps();
+        p1.valueOfInstalledApps();
+        System.out.println("\nWypisanie wszystkich zainstalowanych aplikacji alfabetycznie:\n");
+        p1.installedAppsNames();
+        System.out.println("\nWypisanie wszystkich zainstalowanych aplikacji od najtańszych do najdroższych:\n");
+        p1.appsSortedByPrice();
     }
-
 }
