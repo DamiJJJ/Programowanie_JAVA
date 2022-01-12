@@ -1,6 +1,5 @@
 package com.company.devices;
 
-import com.company.Saleable;
 
 public abstract class Device {
     final String model;

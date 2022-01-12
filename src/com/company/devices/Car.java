@@ -51,7 +51,7 @@ public abstract class Car extends Device implements Saleable, Comparable<Car> {
     //toString
     public String toString()
     {
-        return "Producent: " + producer + " Model: " + model + " rok produkcji: " + yearOfProduction + " wartoś: " + value + " Moc: " + horsePower + " kM";
+        return producer + " " + model + " rok produkcji: " + yearOfProduction + " wartoś: " + value + " Moc: " + horsePower + " kM";
     }
 
     //Sprzedaż auta
